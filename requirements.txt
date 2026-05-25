@@ -1,0 +1,25 @@
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+pillow>=9.5.0
+transformers>=4.40.0
+accelerate>=0.27.0
+
+# API clients
+anthropic>=0.23.0
+openai>=1.12.0
+google-generativeai>=0.4.0
+
+# Quantization support
+bitsandbytes>=0.42.0
+
+# Qwen-specific
+qwen-vl-utils
+
+# Optional: for better performance
+ninja
+flash-attn>=2.5.0
+
+# Utilities
+numpy>=1.24.0
+tqdm>=4.65.0

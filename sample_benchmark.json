@@ -1,0 +1,98 @@
+[
+  {
+    "qa_id": "UCSF-GBM_0001_sample",
+    "patient_id": "UCSF-0001",
+    "dataset": "UCSF-GBM",
+    "age": "56",
+    "sex": "M",
+    "question": ["Compare baseline (timepoint 0) and follow-up (timepoint 1) T1CE sequences across all views. Has the enhancing lesion in the right frontal lobe increased, decreased, or remained stable in size?"],
+    "options": {
+      "A": "Increased",
+      "B": "Decreased",
+      "C": "Stable",
+      "D": "Cannot determine from provided images"
+    },
+    "answer": "A",
+    "reasoning": [
+      "Baseline T1CE (timepoint 0) demonstrates heterogeneous enhancement in right frontal lobe measuring approximately 3.2 cm",
+      "Follow-up T1CE (timepoint 1) shows interval increase in enhancing component to approximately 4.1 cm",
+      "Margins have become more irregular with increased peripheral enhancement",
+      "No significant decrease in size or enhancement observed",
+      "Findings consistent with disease progression"
+    ],
+    "images": [
+      {
+        "path": "UCSF-0001/timepoint_0/T1CE_axial.png",
+        "timepoint": 0,
+        "sequence": "T1CE",
+        "view": "axial",
+        "filename": "T1CE_axial.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_0/T1CE_coronal.png",
+        "timepoint": 0,
+        "sequence": "T1CE",
+        "view": "coronal",
+        "filename": "T1CE_coronal.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_0/T1CE_sagittal.png",
+        "timepoint": 0,
+        "sequence": "T1CE",
+        "view": "sagittal",
+        "filename": "T1CE_sagittal.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_0/T2_axial.png",
+        "timepoint": 0,
+        "sequence": "T2",
+        "view": "axial",
+        "filename": "T2_axial.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_0/FLAIR_axial.png",
+        "timepoint": 0,
+        "sequence": "FLAIR",
+        "view": "axial",
+        "filename": "FLAIR_axial.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_1/T1CE_axial.png",
+        "timepoint": 1,
+        "sequence": "T1CE",
+        "view": "axial",
+        "filename": "T1CE_axial.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_1/T1CE_coronal.png",
+        "timepoint": 1,
+        "sequence": "T1CE",
+        "view": "coronal",
+        "filename": "T1CE_coronal.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_1/T1CE_sagittal.png",
+        "timepoint": 1,
+        "sequence": "T1CE",
+        "view": "sagittal",
+        "filename": "T1CE_sagittal.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_1/T2_axial.png",
+        "timepoint": 1,
+        "sequence": "T2",
+        "view": "axial",
+        "filename": "T2_axial.png"
+      },
+      {
+        "path": "UCSF-0001/timepoint_1/FLAIR_axial.png",
+        "timepoint": 1,
+        "sequence": "FLAIR",
+        "view": "axial",
+        "filename": "FLAIR_axial.png"
+      }
+    ],
+    "clinical_context": "Post-operative glioblastoma status post resection and chemoradiation. Serial MRI for treatment response assessment.",
+    "task_type": "Disease Progression"
+  }
+]
