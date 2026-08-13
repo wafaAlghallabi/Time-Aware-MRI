@@ -38,7 +38,7 @@
 ## 📢 Latest Updates
 
 - 🔥🔥🔥 **[May 2026]** Paper **Early Accepted** at **MICCAI 2026** (top 9%) — see you in Strasbourg, France! 🇫🇷
-- 🔥 **[May 2026]** Code and evaluation splits released — full dataset preprocessing scripts coming in **one week**.
+- 🔥 **[May 2026]** Code, evaluation scripts and preprocessing scripts released.
 - 📄 **[Coming soon]** arXiv preprint and project page.
 - 🤗 **[Coming soon]** Benchmark on Hugging Face Datasets.
 
@@ -49,7 +49,7 @@
 - 🧠 **First longitudinal multi-view MRI benchmark** for foundation models — unifies temporal reasoning, multi-view anatomical input, and structured localization guidance.
 - 🏥 **Clinically grounded**: 7 expert cohorts spanning glioblastoma, brain metastases, neurodegeneration, and vestibular schwannoma — dual-radiologist verified.
 - 📊 **3,920 expert-verified QA pairs** across 5 task families (open-ended, multiple-choice, and binary formats).
-- 🤖 **17 VLMs evaluated** — including GPT-4o, GPT-5.2, o4-mini, Gemini-2.5/3 Pro & Flash, Qwen3-VL, Llama-4 Scout/Maverick, InternVL3.5, and MedGemma variants.
+- 🤖 **16 VLMs evaluated** — including GPT-4o, GPT-5.2, o4-mini, Gemini-2.5/3 Pro & Flash, Qwen3-VL, Llama-4 Scout/Maverick, InternVL3.5, and MedGemma variants.
 - 📐 **New TAC metric** — Time-Aware Composite jointly scores temporal consistency, change characterisation, and structural reasoning fidelity.
 - 🔬 **Multi-view ablation** — agentic Resident-Attending protocol isolates the effect of multi-view vs axial-only input on spatial localization and temporal reasoning.
 
