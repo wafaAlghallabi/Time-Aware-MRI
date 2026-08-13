@@ -121,15 +121,6 @@ The benchmark is built on **seven publicly available longitudinal MRI cohorts**,
 | **ADNI** | Alzheimer's disease neuroimaging | [adni.loni.usc.edu](https://adni.loni.usc.edu/) |
 | **Vestibular-Schwannoma-MC-RC** | Vestibular schwannoma follow-up | [TCIA](https://www.cancerimagingarchive.net/collection/vestibular-schwannoma-mc-rc/) |
 
-### 🔧 Preprocessing Scripts
-
-> ⏳ **Coming in one week.** The complete preprocessing pipeline — including ANTs-based registration, sequence-specific percentile normalisation (T1CE/post-contrast: p₁–p₉₉.₅; T2/FLAIR: p₂–p₉₈ with adaptive ceiling), multi-view extraction, and the automated quality-control filter — will be released in [`preprocessing/`](preprocessing/) along with cohort-specific config files. Star ⭐ the repo to be notified.
-
-### 📂 Evaluation Splits
-
-Train / val / test splits used in the paper are provided under [`data/splits/`](data/splits/) as JSON manifests, supporting both zero-shot evaluation and future supervised adaptation studies.
-
----
 
 ## ⚙️ Installation
 
@@ -145,37 +136,7 @@ conda activate time-aware-mri
 # 3. Install dependencies
 pip install -r requirements.txt
 ```
-
-### 🔑 API Keys (for closed-source models)
-
-```bash
-export OPENAI_API_KEY="sk-..."          # GPT-4o, GPT-5.2, o4-mini
-export GOOGLE_API_KEY="..."             # Gemini-2.5/3 Pro & Flash
-export ANTHROPIC_API_KEY="..."          # (optional)
-```
-
 ---
-
-## 🚀 Quick Start
-
-Run a single-model evaluation on the benchmark:
-
-```bash
-python evaluate.py \
-  --model gpt-4o \
-  --task temporal_reasoning \
-  --data_dir ./data/splits/test \
-  --output_dir ./results/gpt-4o
-```
-
-Run all 5 tasks for one model:
-
-```bash
-bash scripts/run_full_eval.sh gpt-4o
-```
-
----
-
 ## 📊 Main Results — Table 1
 
 **Performance of 16 VLMs on the Time-Aware Multi-View MRI Benchmark.** Higher TAC indicates stronger temporal consistency and reasoning fidelity. **Bold** = best per column.
@@ -200,68 +161,6 @@ bash scripts/run_full_eval.sh gpt-4o
 | MedGemma-27B-IT | 19.13 | 5.04 | 0.602 | 0.696 | 0.280 | 0.523 | 0.936 | 0.645 |
 | MedGemma-1.5-4B-IT | 21.80 | 4.81 | 0.587 | 0.706 | 0.262 | 0.472 | 0.873 | 0.749 |
 | MedGemma-4B-IT | 23.50 | 4.58 | 0.572 | 0.717 | 0.245 | 0.421 | 0.809 | 0.854 |
-
-### 🔁 Reproducing Table 1
-
-```bash
-# Run the full Table 1 evaluation across all 16 VLMs and 5 tasks
-bash scripts/reproduce_table1.sh
-
-# Or run model-by-model
-python evaluate.py --model gpt-4o            --tasks all
-python evaluate.py --model gemini-3-pro      --tasks all
-python evaluate.py --model internvl3.5-inst  --tasks all
-# ... etc.
-
-# Aggregate and render the table
-python scripts/aggregate_results.py --input results/ --output table1.md
-```
-
-Per-model evaluation scripts are organised under [`evaluation/`](evaluation/):
-
-```
-evaluation/
-├── openai_model.py        # GPT-4o, GPT-5.2, o4-mini
-├── gemini_model.py        # Gemini-2.5 / Gemini-3 Pro & Flash
-├── internvl_model.py      # InternVL3.5
-├── qwen_vl_model.py       # Qwen3-VL family
-├── llama4_model.py        # Llama-4 Scout & Maverick
-├── medgemma_model.py      # MedGemma variants
-└── ...
-```
-
----
-
-## 🔬 Multi-View Configuration Analysis — Table 2
-
-**Effect of multi-view (axial + coronal + sagittal) vs axial-only inputs**, evaluated on the UCSF-GBM subset (1,192 samples) under our agentic Resident-Attending protocol.
-
-| Model | Axial-Only Acc (%) | Multi-View Acc (%) | Δ (pp) | Verdict |
-|---|---:|---:|---:|:---:|
-| **InternVL3.5-Inst** | 38.0 | **44.2** | **+6.2** | ⬆️ |
-| Qwen3-VL-8B-Inst | 51.6 | 43.6 | −8.0 | ⬇️ |
-| GPT-4o | 30.5 | 36.7 | +6.2 | ⬆️ |
-| Gemini-2.5-Pro | 28.4 | 32.1 | +3.7 | ⬆️ |
-| Gemini-2.5-Flash | 25.7 | 28.8 | +3.1 | ⬆️ |
-| MedGemma-4B-IT | 27.5 | 21.7 | −5.8 | ⬇️ |
-
-> 🔑 **Key finding.** Multi-view inputs **boost spatial localization** (peaks at 97.3% on progression localization) but **degrade temporal ordering in compact open-source models** (Qwen3-VL-8B: −8.0 pp; MedGemma-4B: −5.8 pp), suggesting information overload. Volumetric quantification stays below 16% across all models — a clear architectural deficiency that 2D multi-view input alone cannot bridge.
-
-### 🔁 Reproducing Table 2
-
-```bash
-# Run the multi-view ablation with the Resident-Attending agentic workflow
-bash scripts/reproduce_table2.sh
-
-# Single-model multi-view run
-python evaluate_multiview.py \
-  --model internvl3.5-inst \
-  --view_config multi    # or "axial"
-  --subset ucsf-gbm \
-  --output_dir results/multiview/internvl3.5
-```
-
-The agentic Resident-Attending workflow lives in [`evaluation/agentic_model.py`](evaluation/agentic_model.py).
 
 ---
 
