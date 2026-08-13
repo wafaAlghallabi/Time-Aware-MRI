@@ -59,7 +59,17 @@
 
 Real-world radiology is **comparative and longitudinal**: radiologists assess disease progression by aligning current and prior scans across multiple anatomical views and sequences. Yet most medical VLM benchmarks remain confined to single-timepoint, single-view interpretation.
 
-The **Time-Aware Multi-View MRI Benchmark** closes this gap with five complementary tasks:
+The **Time-Aware Multi-View MRI Benchmark** addresses this gap through a unified pipeline that integrates longitudinal MRI data, multi-view extraction, expert-guided question generation, and radiologist verification.
+
+<p align="center">
+  <img src="assets/pipeline.png" alt="Time-Aware Multi-View MRI Benchmark pipeline" width="95%">
+</p>
+
+<p align="center">
+  <em>Overview of the Time-Aware Multi-View MRI Benchmark pipeline, from longitudinal data selection and multi-view extraction to expert-guided QA generation and radiologist verification.</em>
+</p>
+
+The benchmark evaluates five complementary tasks:
 
 | # | Task | Format | # QA Pairs | What it tests |
 |---|---|---|---|---|
@@ -71,6 +81,10 @@ The **Time-Aware Multi-View MRI Benchmark** closes this gap with five complement
 
 <p align="center">
   <img src="assets/samples.png" alt="Representative QA samples" width="88%">
+</p>
+
+<p align="center">
+  <em>Representative benchmark samples illustrating longitudinal MRI reasoning across different pathologies and task formats.</em>
 </p>
 
 ---
