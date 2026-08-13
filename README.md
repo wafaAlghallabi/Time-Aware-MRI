@@ -31,16 +31,16 @@
 
 ---
 
-> **TL;DR.** We introduce the **Time-Aware Multi-View MRI Benchmark** — the first large-scale evaluation suite that probes vision-language models on *longitudinal*, *multi-view*, *clinically grounded* MRI reasoning. The benchmark covers **3,920 expert-verified QA pairs** from **890 patients** across **3,200+ timepoints** and **7 cohorts**, spanning **glioblastoma, brain metastases, neurodegeneration, and vestibular schwannoma**. We evaluate **17 VLMs** (closed- and open-source) and find that even state-of-the-art systems systematically fail on clinically critical change-direction recognition.
+> **TL;DR.** We introduce the **Time-Aware Multi-View MRI Benchmark** — the first large-scale evaluation suite that probes vision-language models on *longitudinal*, *multi-view*, *clinically grounded* MRI reasoning. The benchmark covers **3,920 expert-verified QA pairs** from **890 patients** across **3,200+ timepoints** and **7 cohorts**, spanning **glioblastoma, brain metastases, neurodegeneration, and vestibular schwannoma**. We evaluate **16 VLMs** (closed- and open-source) and find that even state-of-the-art systems systematically fail on clinically critical change-direction recognition.
 
 ---
 
 ## 📢 Latest Updates
 
-- 🔥🔥🔥 **[May 2026]** Paper **Early Accepted** at **MICCAI 2026** (top 9%) — see you in Strasbourg, France! 🇫🇷
+- 🔥🔥🔥 **[August 2026]** Paper selected for a **Spotlight Presentation** — see you in Strasbourg, France! 🇫🇷
+- 🔥🔥 **[May 2026]** Paper **Early Accepted** at **MICCAI 2026** (top 9%).
 - 🔥 **[May 2026]** Code, evaluation scripts and preprocessing scripts released.
-- 📄 **[Coming soon]** arXiv preprint and project page.
-- 🤗 **[Coming soon]** Benchmark on Hugging Face Datasets.
+- 🤗 **[Coming soon]** Benchmark on Hugging Face.
 
 ---
 
@@ -70,7 +70,7 @@ The **Time-Aware Multi-View MRI Benchmark** closes this gap with five complement
 | 5 | **Change Localization Over Time** | MCQ | 562 | Maximal-change timepoints and locations |
 
 <p align="center">
-  <img src="assets/figure3_samples.png" alt="Representative QA samples" width="88%">
+  <img src="assets/samples.png" alt="Representative QA samples" width="88%">
 </p>
 
 ---
@@ -164,7 +164,7 @@ bash scripts/run_full_eval.sh gpt-4o
 
 ## 📊 Main Results — Table 1
 
-**Performance of 17 VLMs on the Time-Aware Multi-View MRI Benchmark.** Higher TAC indicates stronger temporal consistency and reasoning fidelity. **Bold** = best per column.
+**Performance of 16 VLMs on the Time-Aware Multi-View MRI Benchmark.** Higher TAC indicates stronger temporal consistency and reasoning fidelity. **Bold** = best per column.
 
 | Model | Final Acc (%) | RS | TAC | TEDS | Trend F1 | Sign Acc | Coverage | Chronology |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -190,7 +190,7 @@ bash scripts/run_full_eval.sh gpt-4o
 ### 🔁 Reproducing Table 1
 
 ```bash
-# Run the full Table 1 evaluation across all 17 VLMs and 5 tasks
+# Run the full Table 1 evaluation across all 16 VLMs and 5 tasks
 bash scripts/reproduce_table1.sh
 
 # Or run model-by-model
