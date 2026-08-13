@@ -1,0 +1,44 @@
+name: Install evaluation release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'evaluation/.bundle/READY'
+
+permissions:
+  contents: write
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct and install evaluation release
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat evaluation/.bundle/part_* > /tmp/evaluation_release.b64
+          base64 --decode /tmp/evaluation_release.b64 > /tmp/evaluation_release.tar.gz
+          mkdir -p /tmp/evaluation_release
+          tar -xzf /tmp/evaluation_release.tar.gz -C /tmp/evaluation_release
+          rm -rf evaluation/step_generation evaluation/table1 evaluation/table2
+          cp -a /tmp/evaluation_release/. evaluation/
+          rm -rf evaluation/.bundle
+          find evaluation -type d -name '__pycache__' -prune -exec rm -rf {} +
+          rm -f evaluation/CLEANUP_NOTES.md
+      - name: Commit installed files
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add evaluation
+          if git diff --cached --quiet; then
+            echo 'No changes to commit.'
+            exit 0
+          fi
+          git commit -m 'Add cleaned evaluation release'
+          git push
