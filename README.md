@@ -37,8 +37,8 @@
 
 ## 📢 Latest Updates
 
-- 🔥🔥🔥 **[August 2026]** Paper selected for a **Spotlight Presentation** — see you in Strasbourg, France! 🇫🇷
-- 🔥🔥 **[May 2026]** Paper **Early Accepted** at **MICCAI 2026** (top 9%).
+- 🌟 **[August 2026]** Paper selected for a **Spotlight Presentation** — see you in Strasbourg, France! 🇫🇷
+- 🏆 **[May 2026]** Paper **Early Accepted** at **MICCAI 2026** (top 9%).
 - 🔥 **[May 2026]** Code, evaluation scripts and preprocessing scripts released.
 - 🤗 **[Coming soon]** Benchmark on Hugging Face.
 
@@ -107,7 +107,7 @@ The benchmark evaluates five complementary tasks:
 
 ## 📦 Dataset
 
-The benchmark is built on **seven publicly available longitudinal MRI cohorts**.
+The benchmark is built on seven longitudinal MRI cohorts spanning publicly accessible and controlled-access datasets.
 
 ### 🩻 Source Cohorts
 
