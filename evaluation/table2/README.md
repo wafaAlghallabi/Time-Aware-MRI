@@ -1,4 +1,3 @@
-````markdown
 # Table 2: Multi-View Configuration Analysis
 
 This folder contains the **Resident → Attending** agentic workflow used for the UCSF-GBM multi-view analysis reported in Table 2.
@@ -6,8 +5,6 @@ This folder contains the **Resident → Attending** agentic workflow used for th
 - `agentic_pipeline.py` — runs the Resident → Attending workflow.
 - `evaluate_multiview.py` — evaluates the generated outputs.
 - `run_table2.sh` — launcher for the Table 2 experiment.
-
-## Run
 
 Set your API key first:
 
