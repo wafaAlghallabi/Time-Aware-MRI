@@ -62,7 +62,7 @@ Real-world radiology is **comparative and longitudinal**: radiologists assess di
 The **Time-Aware Multi-View MRI Benchmark** addresses this gap through a unified pipeline that integrates longitudinal MRI data, multi-view extraction, expert-guided question generation, and radiologist verification.
 
 <p align="center">
-  <img src="assets/pipeline.png" alt="Time-Aware Multi-View MRI Benchmark pipeline" width="95%">
+  <img src="assets/benchmark_pipeline.png" alt="Time-Aware Multi-View MRI Benchmark pipeline" width="95%">
 </p>
 
 <p align="center">
@@ -80,7 +80,7 @@ The benchmark evaluates five complementary tasks:
 | 5 | **Change Localization Over Time** | MCQ | 562 | Maximal-change timepoints and locations |
 
 <p align="center">
-  <img src="assets/samples.png" alt="Representative QA samples" width="88%">
+  <img src="assets/benchmark_samples.png" alt="Representative QA samples" width="95%">
 </p>
 
 <p align="center">
