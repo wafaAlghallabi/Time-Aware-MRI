@@ -107,7 +107,7 @@ The benchmark evaluates five complementary tasks:
 
 ## 📦 Dataset
 
-The benchmark is built on **seven publicly available longitudinal MRI cohorts**, harmonised with a unified preprocessing pipeline (registration → multi-view extraction → sequence-specific intensity normalisation → quality control).
+The benchmark is built on **seven publicly available longitudinal MRI cohorts**.
 
 ### 🩻 Source Cohorts
 
@@ -121,13 +121,15 @@ The benchmark is built on **seven publicly available longitudinal MRI cohorts**,
 | **ADNI** | Alzheimer's disease neuroimaging | [adni.loni.usc.edu](https://adni.loni.usc.edu/) |
 | **Vestibular-Schwannoma-MC-RC** | Vestibular schwannoma follow-up | [TCIA](https://www.cancerimagingarchive.net/collection/vestibular-schwannoma-mc-rc/) |
 
-### 🔧 Preprocessing Scripts
+Source MRI images are **not redistributed** in this repository. Please download the datasets from their official providers and comply with the corresponding licenses and data-use agreements.
 
-> ⏳ **Coming in one week.** The complete preprocessing pipeline — including ANTs-based registration, sequence-specific percentile normalisation (T1CE/post-contrast: p₁–p₉₉.₅; T2/FLAIR: p₂–p₉₈ with adaptive ceiling), multi-view extraction, and the automated quality-control filter — will be released in [`preprocessing/`](preprocessing/) along with cohort-specific config files. Star ⭐ the repo to be notified.
+### 🔧 Data Preprocessing
 
-### 📂 Evaluation Splits
+After downloading the source datasets, use the scripts provided in [`preprocessing/`](preprocessing/) to prepare the longitudinal MRI data for the benchmark.
 
-Train / val / test splits used in the paper are provided under [`data/splits/`](data/splits/) as JSON manifests, supporting both zero-shot evaluation and future supervised adaptation studies.
+The preprocessing pipeline handles registration, intensity normalization, multi-view extraction, and preparation of the image structure expected by the benchmark.
+
+See [`preprocessing/`](preprocessing/) for dataset-specific instructions and example commands.
 
 ---
 
@@ -156,23 +158,53 @@ export ANTHROPIC_API_KEY="..."          # (optional)
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Evaluation
 
-Run a single-model evaluation on the benchmark:
+Evaluation code is provided under [`evaluation/`](evaluation/).
 
-```bash
-python evaluate.py \
-  --model gpt-4o \
-  --task temporal_reasoning \
-  --data_dir ./data/splits/test \
-  --output_dir ./results/gpt-4o
+```text
+evaluation/
+├── step_generation/   # Generate model reasoning steps and final answers
+├── table1/            # Reproduce the main benchmark results in Table 1
+└── table2/            # Reproduce the multi-view analysis in Table 2
 ```
 
-Run all 5 tasks for one model:
+### Step 1: Generate Model Predictions
+
+Use the scripts under [`evaluation/step_generation/`](evaluation/step_generation/) to generate reasoning steps and final answers for each evaluated model.
+
+See [`evaluation/step_generation/`](evaluation/step_generation/) for model-specific usage examples.
+
+### Step 2: Reproduce Table 1
+
+Table 1 reports **Final Accuracy, Reasoning Score (RS), TAC, TEDS, Trend-F1, Sign Accuracy, Coverage, and Chronology**.
 
 ```bash
-bash scripts/run_full_eval.sh gpt-4o
+export OPENAI_API_KEY="YOUR_API_KEY"
+
+bash evaluation/table1/run_table1.sh \
+    benchmark/test.jsonl \
+    outputs/ \
+    results/table1
 ```
+
+See [`evaluation/table1/`](evaluation/table1/) for details.
+
+### Step 3: Reproduce Table 2
+
+Table 2 uses the **Resident → Attending** agentic workflow for the UCSF-GBM multi-view analysis.
+
+```bash
+export OPENAI_API_KEY="YOUR_API_KEY"
+
+bash evaluation/table2/run_table2.sh \
+    benchmark/ucsf_gbm_test.jsonl \
+    /path/to/UCSF-GBM \
+    results/table2/gpt4o.jsonl \
+    gpt-4o
+```
+
+See [`evaluation/table2/`](evaluation/table2/) for details.
 
 ---
 
@@ -201,34 +233,7 @@ bash scripts/run_full_eval.sh gpt-4o
 | MedGemma-1.5-4B-IT | 21.80 | 4.81 | 0.587 | 0.706 | 0.262 | 0.472 | 0.873 | 0.749 |
 | MedGemma-4B-IT | 23.50 | 4.58 | 0.572 | 0.717 | 0.245 | 0.421 | 0.809 | 0.854 |
 
-### 🔁 Reproducing Table 1
-
-```bash
-# Run the full Table 1 evaluation across all 16 VLMs and 5 tasks
-bash scripts/reproduce_table1.sh
-
-# Or run model-by-model
-python evaluate.py --model gpt-4o            --tasks all
-python evaluate.py --model gemini-3-pro      --tasks all
-python evaluate.py --model internvl3.5-inst  --tasks all
-# ... etc.
-
-# Aggregate and render the table
-python scripts/aggregate_results.py --input results/ --output table1.md
-```
-
-Per-model evaluation scripts are organised under [`evaluation/`](evaluation/):
-
-```
-evaluation/
-├── openai_model.py        # GPT-4o, GPT-5.2, o4-mini
-├── gemini_model.py        # Gemini-2.5 / Gemini-3 Pro & Flash
-├── internvl_model.py      # InternVL3.5
-├── qwen_vl_model.py       # Qwen3-VL family
-├── llama4_model.py        # Llama-4 Scout & Maverick
-├── medgemma_model.py      # MedGemma variants
-└── ...
-```
+For reproduction instructions, see [`evaluation/table1/`](evaluation/table1/).
 
 ---
 
@@ -247,21 +252,7 @@ evaluation/
 
 > 🔑 **Key finding.** Multi-view inputs **boost spatial localization** (peaks at 97.3% on progression localization) but **degrade temporal ordering in compact open-source models** (Qwen3-VL-8B: −8.0 pp; MedGemma-4B: −5.8 pp), suggesting information overload. Volumetric quantification stays below 16% across all models — a clear architectural deficiency that 2D multi-view input alone cannot bridge.
 
-### 🔁 Reproducing Table 2
-
-```bash
-# Run the multi-view ablation with the Resident-Attending agentic workflow
-bash scripts/reproduce_table2.sh
-
-# Single-model multi-view run
-python evaluate_multiview.py \
-  --model internvl3.5-inst \
-  --view_config multi    # or "axial"
-  --subset ucsf-gbm \
-  --output_dir results/multiview/internvl3.5
-```
-
-The agentic Resident-Attending workflow lives in [`evaluation/agentic_model.py`](evaluation/agentic_model.py).
+For reproduction instructions, see [`evaluation/table2/`](evaluation/table2/).
 
 ---
 
