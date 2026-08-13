@@ -4,10 +4,10 @@
 
 ### Time-Aware Multi-View MRI Benchmark   [🔥 MICCAI 2026]
 
-[Wafa Al Ghallabi](https://scholar.google.com/citations?user=m0ez8X8AAAAJ)¹ · &nbsp;
-[Ritesh Thawkar](https://in.linkedin.com/in/ritesh-thawkar-b13192233)¹ · &nbsp;
+[Wafa Al Ghallabi](https://scholar.google.com/citations?user=m0ez8X8AAAAJ)¹ · 
+[Ritesh Thawkar](https://in.linkedin.com/in/ritesh-thawkar-b13192233)¹ · 
 [Sara Ghaboura](https://huggingface.co/SLMLAH)¹ · &nbsp;
-[Omkar Thawakar](https://scholar.google.com/citations?user=flvl5YQAAAAJ)¹ · &nbsp;
+[Omkar Thawakar](https://scholar.google.com/citations?user=flvl5YQAAAAJ)¹ · 
 [Numan Saeed](https://scholar.google.com/citations?user=VHRDcusAAAAJ)¹
 
 [Dana Al Nuaimi](#)² &nbsp; · &nbsp;
