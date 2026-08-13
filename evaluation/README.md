@@ -1,6 +1,4 @@
-# Evaluation code
-
-Publication-ready evaluation code for **How Good are Foundation Models in Longitudinal MRI Disease Progression Reasoning?** (MICCAI 2026).
+# Evaluation scripts
 
 The release follows the experimental workflow used in the paper:
 
@@ -14,7 +12,7 @@ Source MRI images are **not redistributed**. Users should obtain each source coh
 
 ## Credentials
 
-No credentials or machine-specific absolute paths are stored in this release. Set credentials through environment variables only:
+Set credentials through environment variables only:
 
 ```bash
 export OPENAI_API_KEY=...
@@ -25,9 +23,5 @@ export HF_TOKEN=...
 export VLLM_BASE_URL=http://localhost:8000/v1
 export VLLM_API_KEY=...
 ```
-
-## Current model-generation coverage
-
-The cleaned scripts cover the OpenAI, Gemini, Llama-4/Groq, InternVL, and Qwen local/vLLM paths present in the supplied experiment code. A standalone MedGemma Table 1 generation runner is intentionally **not fabricated here**; add the original MedGemma script when recovered.
 
 See each subfolder README for usage.
